@@ -1,0 +1,1986 @@
+{
+	"info": {
+		"_postman_id": "901e0e1b-676f-4c4e-b2e3-dead779b0bec",
+		"name": "CatchyLabs API",
+		"description": "# Overview\n\nCatchylabs API is a powerful tool designed to assess the performance of Quality Assurance (QA) Engineers. It follows the principles of Representational State Transfer (REST) and utilizes the JSON (JavaScript Object Notation) format for data interchange, making it easy to integrate and interact with various applications and systems.\n\nThe primary purpose of the Catchylabs API is to provide a standardized and efficient way to measure and evaluate the effectiveness of QA Engineers in software development projects. It offers a range of endpoints and functionalities that enable comprehensive assessment of their performance, allowing organizations to identify strengths, weaknesses, and areas for improvement.\n\nWith the Catchylabs API, you can access various metrics and insights related to QA Engineers' performance, such as test case execution, defect detection and resolution rates, test coverage, test automation efficiency, and more. These metrics can be retrieved and analyzed in real-time, providing valuable data-driven insights into the effectiveness and efficiency of your QA team.\n\nIn summary, the Catchylabs API offers a standardized, RESTful interface to assess the performance of QA Engineers. It provides valuable metrics and insights, allowing organizations to make data-driven decisions to enhance the effectiveness and efficiency of their QA processes.\n\n# Authentication\n\nCatchylabs API uses bearer token schema for Authentication. You can get more detail on how Bearer Token Authentication works from [here](https://swagger.io/docs/specification/authentication/bearer-authentication/)\n\n# Error Codes\n\nCatchylabs API uses the standard HTTP Statuses; you can see all the HTTP Status Codes from the link [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)  \nMiddleware uses JSON format to return the Error Responses, and you can see an example error response.\n\n```\n{\n    \"message\": \"Username or Password Invalid!\",\n    \"error_code\": \"AUTHENTICATION_FAILED\"\n}\n{\n    \"message\": \"User has no active session to perform this action \",\n    \"error_code\": \"ACTIVE_SESSION_NOT_FOUND\"\n}\n{\n    \"message\": \"Bank Account Not Found!\",\n    \"error_code\": \"BANK_ACCOUNT_NOT_FOUND\"\n}\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41532754"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"access_token\", pm.response.json().access_token);",
+							"pm.globals.set(\"refresh_token\", pm.response.json().refresh_token);",
+							"pm.globals.set(\"user_id\", pm.response.json().user_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://staging-api.catchylabs.co",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Referer",
+						"value": "https://staging-api.catchylabs.co",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Host",
+						"value": "staging-api.catchylabs.co",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"username\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "This endpoint is used to authenticate a user by providing their username and password."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "https://staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Referer",
+								"value": "https://staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Host",
+								"value": "staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"catchylabs\",\n    \"password\": \"catchylabs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jun 2023 19:09:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": \"6c81f81f-a3e7-4afe-9c17-ce3b77274244\",\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXRjaHkiLCJyb2xlcyI6WyJQRVJTT05ORUwiXSwiaXNzIjoiY2F0Y2h5bGFicy5jbyIsImlkIjoiNmM4MWY4MWYtYTNlNy00YWZlLTljMTctY2UzYjc3Mjc0MjQ0IiwiZXhwIjoxNjg2NzcxNTc5LCJlbWFpbCI6ImluZm9AY2F0Y2h5bGFicy50ZWNoIiwidXNlcm5hbWUiOiJjYXRjaHkifQ.OX9G58xf1GsFL7DtmQLBIREiQGxMgh9ea3ASE59IorI\",\n    \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXRjaHkiLCJpc3MiOiJjYXRjaHlsYWJzLmNvIiwiaWQiOiI2YzgxZjgxZi1hM2U3LTRhZmUtOWMxNy1jZTNiNzcyNzQyNDQiLCJleHAiOjE2ODY3ODQxNzl9.TCBV4iUaKgfaA8cIhEOzN3tsjF2cScybm5F3byHrVc0\"\n}"
+				},
+				{
+					"name": "Authentication Failed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "https://staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Referer",
+								"value": "https://staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Host",
+								"value": "staging-api.catchylabs.co",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"username\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c0d93ee499e8b3820b3cf201aefa260e;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jun 2023 19:10:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "80"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username or Password Invalid!\",\n    \"error_code\": \"AUTHENTICATION_FAILED\"\n}"
+				}
+			]
+		},
+		{
+			"name": "RefreshToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"access_token\", pm.response.json().access_token);",
+							"pm.globals.set(\"refresh_token\", pm.response.json().refresh_token);",
+							"pm.globals.set(\"user_id\", pm.response.json().user_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refresh_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/refresh-token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"refresh-token"
+					]
+				},
+				"description": "When your Access Token expires, it would be best to use the Refresh Token endpoint. However, you still want to continue using the secure endpoints so that you can get a new Access Token and Refresh Token from this endpoint."
+			},
+			"response": [
+				{
+					"name": "RefreshToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{refresh_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"refresh-token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Jul 2022 11:15:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": \"0ce0c465-3d66-4665-a3ed-b38d2a0fccc5\",\n    \"access_token\": \"{{access_token}}\",\n    \"refresh_token\": \"{{refresh_token}}\"\n}"
+				},
+				{
+					"name": "Invalid-RefreshToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{invalid_refresh_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"refresh-token"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Jul 2022 11:18:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The token was expected to have 3 parts, but got 1.\",\n    \"error_code\": \"INVALID_TOKEN\"\n}"
+				}
+			]
+		},
+		{
+			"name": "StartSession",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"session_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/sessions/start",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sessions",
+						"start"
+					]
+				},
+				"description": "Before using the CatchyApplication Endpoint, you need a Session assigned to you. You will get an email when your manager gives a session to you. After you get the email, you only need to call the Start Session endpoint."
+			},
+			"response": [
+				{
+					"name": "StartSession",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sessions/start",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"start"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "Text",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"{{session_id}}\",\n    \"created_at\": \"2022-07-22T13:33:37.624779Z\",\n    \"login_time\": \"2022-07-22T14:35:00Z\",\n    \"logout_time\": \"2022-07-22T20:59:59Z\",\n    \"ip_address\": null,\n    \"is_active\": true,\n    \"app_user_id\": \"{{user_id}}\",\n    \"manager_username\": \"{{manager_username}}\",\n    \"clients_used_in_session\": null,\n    \"director_comment\": null,\n    \"manager_points\": null,\n    \"no_of_bugs_in_session\": # of Bugs Enabled in Session,\n    \"user_points\": null,\n    \"max_score\": Max Session Score,\n    \"efficieny_score\": null,\n    \"found_bugs\": null,\n    \"name\": \"{{session_name}}\",\n    \"test_case_path\": null,\n    \"test_report_path\": null,\n    \"status\": \"STARTED\"\n}"
+				},
+				{
+					"name": "SessionNotFound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sessions/start",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"start"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Jul 2022 11:45:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Session not found for user jotformP\",\n    \"error_code\": \"SESSION_NOT_FOUND\"\n}"
+				},
+				{
+					"name": "SessionWillStartAutomatically",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sessions/start",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"start"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "Text",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"Session will start at 2022-07-22T14:35Z[Etc/UTC]\",\n    \"error_code\": \"BAD_REQUEST\"\n}"
+				}
+			]
+		},
+		{
+			"name": "EndSession",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/sessions/{{session_id}}/end",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sessions",
+						"{{session_id}}",
+						"end"
+					]
+				},
+				"description": "Congrats! You finish your session and call the catchy application endpoints. Please ensure you take notes about the bugs because you will prepare a Bug Report that includes your results. Before starting the Bug Report preparation, please call End Session Endpoint so everything will settle before you upload your Bug Report."
+			},
+			"response": [
+				{
+					"name": "EndSession",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sessions/{{session_id}}/end",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"{{session_id}}",
+								"end"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "Text",
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Calculator-Multiply",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"number1\" : 100,\n    \"number2\" : 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/calculators/multiplies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"calculators",
+						"multiplies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator-Subtract",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"number1\" : 100,\n    \"number2\" : 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/calculators/subtracts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"calculators",
+						"subtracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator-Divide",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"number1\" : 100,\n    \"number2\" : 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/calculators/divides",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"calculators",
+						"divides"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator-Add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"number1\" : 100,\n    \"number2\" : 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/calculators/adds",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"calculators",
+						"adds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MoneyTransfer - CreateAccount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_name\":\"account_name\",\n    \"account_type\":\"CHECKING\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/banking/accounts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banking",
+						"accounts"
+					]
+				},
+				"description": "In order to commence utilizing the Catchylabs Money Transfer API, it is imperative to establish an account. The API currently offers support for two distinct types of accounts: CHECKING and SAVINGS. During the account creation process, account will be initialized with a starting balance of 10,000,000 units."
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - Create Checking Account",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_name\":\"account_name\",\n    \"account_type\":\"CHECKING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "location",
+							"value": "https://api.catchylabs.co/banking/accountsf9bdd466-15cf-4ce8-bf79-0803a977b18f"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "bd469fe994616177ee851214364aca63"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:09:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "189"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bank_account_id\": \"f9bdd466-15cf-4ce8-bf79-0803a977b19f\",\n    \"bank_account_name\": \"account_name\",\n    \"bank_account_type\": \"CHECKING\",\n    \"balance\": 10000000,\n    \"created_at\": \"2023-06-26T18:09:53.645507382Z\"\n}"
+				},
+				{
+					"name": "MoneyTransfer - Create Savings Account",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_name\":\"account_name\",\n    \"account_type\":\"CHECKING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "location",
+							"value": "https://api.catchylabs.co/banking/accountsf9bdd466-15cf-4ce8-bf79-0803a977b18f"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "bd469fe994616177ee851214364aca63"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:09:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "189"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bank_account_id\": \"f9bdd466-15cf-4ce8-bf79-0803a977b19f\",\n    \"bank_account_name\": \"account_name\",\n    \"bank_account_type\": \"CHECKING\",\n    \"balance\": 10000000,\n    \"created_at\": \"2023-06-26T18:09:53.645507382Z\"\n}"
+				},
+				{
+					"name": "MoneyTransfer - CreateAccount - User Has Existing Account",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_name\":\"account_name\",\n    \"account_type\":\"CHECKING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "9acf7f5281566c210163ea70912d61ea;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 12:19:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"user already has Bank Account\",\n    \"error_code\": \"ILLEGAL_ARGUMENT\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MoneyTransfer - GetAccount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/banking/users/accounts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banking",
+						"users",
+						"accounts"
+					]
+				},
+				"description": "You can acquire your Catchylabs Bank Account by submitting this request only with authorization token."
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - GetAccount",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/users/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"users",
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:39:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bank_account_id\": \"{{account_id}}\",\n    \"bank_account_name\": \"account_name\",\n    \"bank_account_type\": \"CHECKING\",\n    \"balance\": 10000000,\n    \"created_at\": \"2023-06-26T18:36:43.519054Z\"\n}"
+				},
+				{
+					"name": "MoneyTransfer - GetAccount - Bank Account Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/users/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"users",
+								"accounts"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "952996ab8c9aec251bf8f6b213f6e139"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:53:30 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Bank Account Not Found!\",\n    \"error_code\": \"BANK_ACCOUNT_NOT_FOUND\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MoneyTransfer - GetAccount With AccountId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/banking/accounts/{{account_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banking",
+						"accounts",
+						"{{account_id}}"
+					]
+				},
+				"description": "You can acquire your Catchylabs Bank Account by submitting this request, utilizing the account_id obtained from the response of the Create Account Endpoint."
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - GetAccount",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts/{{account_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:39:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bank_account_id\": \"{{account_id}}\",\n    \"bank_account_name\": \"account_name\",\n    \"bank_account_type\": \"CHECKING\",\n    \"balance\": 10000000,\n    \"created_at\": \"2023-06-26T18:36:43.519054Z\"\n}"
+				},
+				{
+					"name": "MoneyTransfer - GetAccount - Bank Account Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts/{{account_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "952996ab8c9aec251bf8f6b213f6e139"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:53:30 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Bank Account Not Found!\",\n    \"error_code\": \"BANK_ACCOUNT_NOT_FOUND\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MoneyTransfer - GetAccounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/banking/accounts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banking",
+						"accounts"
+					]
+				},
+				"description": "You can utilize the \"Get Accounts\" endpoint to retrieve the pre-defined accounts for initiating money transfers from your own account."
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - GetAccounts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 19:19:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bank_account_id\": \"0067acfe-c244-49c1-a736-e04057e93d4d\",\n        \"bank_account_name\": \"CatchyLabs-1\",\n        \"bank_account_type\": \"CHECKING\",\n        \"balance\": 10,\n        \"created_at\": \"2023-06-26T19:19:03.535616Z\"\n    },\n    {\n        \"bank_account_id\": \"03de5f41-bd8f-4284-b0c4-e813625b4c5a\",\n        \"bank_account_name\": \"CatchyLabs-5\",\n        \"bank_account_type\": \"CHECKING\",\n        \"balance\": 10,\n        \"created_at\": \"2023-06-26T19:19:04.355058Z\"\n    },\n    {\n        \"bank_account_id\": \"5c383298-4503-4d6a-9e4d-0470fe60d3ae\",\n        \"bank_account_name\": \"CatchyLabs-4\",\n        \"bank_account_type\": \"CHECKING\",\n        \"balance\": 10,\n        \"created_at\": \"2023-06-26T19:19:04.303476Z\"\n    },\n    {\n        \"bank_account_id\": \"69d8c1de-ee69-4b1d-911d-83f03a9445bd\",\n        \"bank_account_name\": \"CatchyLabs-2\",\n        \"bank_account_type\": \"CHECKING\",\n        \"balance\": 10,\n        \"created_at\": \"2023-06-26T19:19:04.13479Z\"\n    },\n    {\n        \"bank_account_id\": \"afde1d58-9839-4cfe-a125-b37a39d67e5d\",\n        \"bank_account_name\": \"CatchyLabs-3\",\n        \"bank_account_type\": \"CHECKING\",\n        \"balance\": 10,\n        \"created_at\": \"2023-06-26T19:19:04.223849Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "MoneyTransfer - Send Money",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sender_account_id\":\"{{sender_account_id}}\",\n    \"receiver_account_id\":\"{{receiver_account_id}}\",\n    \"amount\":50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/banking/transactions/transfer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banking",
+						"transactions",
+						"transfer"
+					]
+				},
+				"description": "To initiate a fund transfer, you can utilize the \"Get Accounts Endpoint\" to obtain a list of predefined accounts. From this list, select one as the receiver_account_id and designate your own account_id as the sender_account_id. Additionally, specify the desired amount to be transferred."
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - Send Money",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sender_account_id\":\"{{sender_account_id}}\",\n    \"receiver_account_id\":\"{{receiver_account_id}}\",\n    \"amount\":50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/transactions/transfer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"transactions",
+								"transfer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 19:21:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"transaction_id\": \"d0d3b2df-8dc1-4ab3-aef3-ea52f2d2d7a2\",\n    \"transaction_time\": \"2023-06-26T22:21:35.651835904+03:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MoneyTransfer - GetAccountTransactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{account_id}}/transactions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{account_id}}",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "MoneyTransfer - GetAccountTransactions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/banking/accounts/{{account_id}}/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banking",
+								"accounts",
+								"{{account_id}}",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "vary",
+							"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "0"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Jun 2023 18:49:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"transactions\": [\n        {\n            \"receiver\": \"CatchyBank\",\n            \"sender\": \"account_name\",\n            \"amount\": 10000000,\n            \"transaction_time\": \"2023-06-26T18:36:43.673391Z\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://catchylabs-api.testinium.com",
+			"type": "string"
+		}
+	]
+}
